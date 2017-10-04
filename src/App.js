@@ -48,7 +48,8 @@ class EventList extends React.Component {
     super();
     this.filterEvents = this.filterEvents.bind(this);
     this.state = {
-      events: props.events
+      events: props.events,
+      addingEvent: false
     };
   }
 
@@ -58,16 +59,54 @@ class EventList extends React.Component {
     });
   }
 
+  showEventForm() {
+    this.setState({addingEvent: true});
+  }
+
   render() {
     return (
       <div>
+        <button onClick={this.showEventForm.bind(this)}>Add New Event</button><br/>
+        { this.renderAddEventForm() }
+        <label>Search Events:</label>
         <input type="text"
-         onChange={this.filterEvents}/>
+         onChange={ this.filterEvents }/>
         <ul>
-          {this.renderEvents()}
+          { this.renderEvents() }
         </ul>
       </div>
     );
+  }
+
+  renderAddEventForm() {
+    if(this.state.addingEvent) {
+      return (
+        <form onSubmit={this.addNewEvent.bind(this)}>
+          <input ref="eventName" type="text"/>
+          <input ref="eventLocation" type="text"/>
+          <input ref="eventDate" type="date"/>
+          <input type="submit"/>
+        </form>
+      );
+    }
+    else return null;
+  }
+
+  addNewEvent(e) {
+    e.preventDefault();
+    let { eventName, eventLocation, eventDate } = this.refs;
+    let newEvent = {
+      name: eventName.value,
+      location: eventLocation.value,
+      eventDate: moment(eventDate.value).format('MMM Do YYYY'),
+      createdAt: Date.now(),
+      done: false
+    };
+
+    this.state.events.push(newEvent);
+    this.setState({
+      events: this.state.events
+    });
   }
 
   renderEvents() {
@@ -75,7 +114,7 @@ class EventList extends React.Component {
     console.log(events);
     return events.map((event, idx) => {
         return (
-          <div key={idx}>
+          <div key={ idx }>
             <h3>{event.name}</h3>
             <h5>{event.eventDate}</h5>
             <h6>{event.location}</h6>
