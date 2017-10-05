@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.site-wrapper {
+  max-width: 1260px;
+  margin: 0 auto;
+}
+
+.eventList {
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+.eventList ul {
+  list-style-type: none;
+}
+
+.eventList ul li {
+  margin: 24px auto;
+}
+
+.eventList ul li h3 {
+  margin: 12px auto;
+}
