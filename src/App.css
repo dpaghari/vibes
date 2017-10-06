@@ -7,21 +7,68 @@
 .site-wrapper {
   max-width: 1260px;
   margin: 0 auto;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-.eventList {
+.playList {
+  display: flex;
+  justify-content: space-around;
   margin: 0 auto;
-  max-width: 680px;
+  align-items: center;
+  color: #444;
+  /*max-width: 680px;*/
 }
 
-.eventList ul {
+.playList .playList__img {
+  width: 500px;
+  height: 500px;
+}
+
+.playList ul {
   list-style-type: none;
+  width: 80%;
+  padding: 20px;
+
 }
 
-.eventList ul li {
-  margin: 24px auto;
-}
-
-.eventList ul li h3 {
+.playList ul li {
+  display: flex;
+  /*justify-content: space-around;*/
+  align-items: center;
   margin: 12px auto;
+  padding: 6px;
+  border-bottom: 1px solid #f6f6f6
+}
+
+.playList .playList__img-wrapper {
+  background: #f5f8f7;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+}
+
+.playList .playList__img-wrapper h1 {
+  font-size: 4em;
+}
+.playList ul li img {
+  max-height: 25px;
+}
+
+.playList ul li .songInfo {
+  display: flex;
+  /*justify-content: space-around;*/
+  width: 100%;
+}
+
+.songInfo h3 {
+  font-size: 12px;
+  margin: 0 60px;
+}
+.songInfo h4, .songInfo h5 {
+  font-size: 10px;
+  margin: 0 60px;
 }
