@@ -28,6 +28,8 @@
   list-style-type: none;
   width: 80%;
   padding: 20px;
+  max-height: 50vh;
+  overflow-y: auto;
 
 }
 
@@ -37,7 +39,7 @@
   align-items: center;
   margin: 12px auto;
   padding: 6px;
-  border-bottom: 1px solid #f6f6f6
+  border-bottom: 1px solid #f6f6f6;
 }
 
 .playList .playList__img-wrapper {
