@@ -19,7 +19,7 @@ export default class Playlist extends React.Component {
 
   componentDidMount() {
     var spotifyApi = new SpotifyWebApi();
-    spotifyApi.setAccessToken('BQBgZjupvnVmQfgOD9l3c2wg_kg8R523quEOsnp_p1LPhiZlzxIQEG-6ma92QBrztNXYv5ifmyIj4pc6dc0azga9NuI4GTFwz77_fBP-_r7PKhQ5-GGBNwcCrIi7uQAIkt5Xj9UOQFLdBGk6OIu_61sZBBs-p271PJziXwZgrlwHP5dfgCpl0EnCh0ZmDetCbw39cpuPqaDoFBOfbPkM5ElRxAK_p_vzm5hwqPFIRd2gkpyJQNW5lzkUxxBKAXOkHDzli2KI0uO-nt17cY0beo3viDBvTWz6');
+    spotifyApi.setAccessToken('BQAa3NwP91OtZle1zjSsHnyAgx-twp2DgWogCf7rJ60JTfudxfaBwFZ67gO6fOYUQDFlzhAslQR881hkt0nnXUmQ-fs5OfjBWWyfmHblPgNPWGiUBkbO1xlj-jrE3oG8bEkjIiA4eLKwAUV4Uc_61FooAKFWH_tv');
     spotifyApi.getPlaylist('dpaghari', '6JMfX4X1l9yKOYa1zFnDqf')
     .then(function(data) {
     console.log('User playlists', data);

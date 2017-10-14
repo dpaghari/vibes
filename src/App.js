@@ -1,4 +1,4 @@
-import './App.css';
+import './styles.css';
 // Custom Components
 import Playlist from './Playlist';
 
