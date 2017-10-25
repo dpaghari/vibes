@@ -1,16 +1,30 @@
+@font-face
+  font-family: 'Podriq'
+  src: url('./fonts/Podriq.otf')
+@font-face
+  font-family: 'Rosarina'
+  src: url('./fonts/rosarina.ttf')
+@font-face
+  font-family: 'Leafy'
+  src: url('./fonts/leafy.otf')
+
 *
   padding: 0
   margin: 0
   box-sizing: border-box
 
+#root
+  height: 100vh
 
 .site-wrapper
+  height: 100vh
   max-width: 1260px
   margin: 0 auto
-  font-family: 'Source Sans Pro', sans-serif
+  font-family: 'Leafy', 'Source Sans Pro', sans-serif
 
 
 .playList
+  height: 100%
   display: flex
   justify-content: space-around
   margin: 0 auto
@@ -28,7 +42,7 @@
   list-style-type: none
   width: 80%
   padding: 20px
-  max-height: 50vh
+  max-height: 75vh
   overflow-y: auto
 
 
@@ -54,15 +68,19 @@
 
 
 .playList .playList__img-wrapper h1
-  font-size: 4em
+  font-size: 6em
+  margin: 24px auto
+  font-family: 'Leafy', sans-serif
 
 .playList ul li img
   max-height: 25px
 
 
 .playList ul li .songInfo
+  font-family: 'Source Sans Pro', sans-serif
   display: flex
-  /*justify-content: space-around*/
+  justify-content: space-between
+  align-items: stretch
   width: 100%
 
 

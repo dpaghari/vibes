@@ -1,4 +1,5 @@
 import SpotifyWebApi from 'spotify-web-api-js';
+import spotifyHelper from './spotifyHelper';
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -12,23 +13,38 @@ export default class Playlist extends React.Component {
     this.state = {
       songs: props.songs,
       addingSong: false,
-      spotify: {}
+      spotify: {},
+      playlistName: 'Vibes',
+      access_token: ''
     };
 
   }
 
-  componentDidMount() {
-    var spotifyApi = new SpotifyWebApi();
-    spotifyApi.setAccessToken('BQAa3NwP91OtZle1zjSsHnyAgx-twp2DgWogCf7rJ60JTfudxfaBwFZ67gO6fOYUQDFlzhAslQR881hkt0nnXUmQ-fs5OfjBWWyfmHblPgNPWGiUBkbO1xlj-jrE3oG8bEkjIiA4eLKwAUV4Uc_61FooAKFWH_tv');
-    spotifyApi.getPlaylist('dpaghari', '6JMfX4X1l9yKOYa1zFnDqf')
-    .then(function(data) {
-    console.log('User playlists', data);
-    this.setState({
-      songs: data.tracks.items
-    });
-  }.bind(this), function(err) {
-      console.error(err);
-    });
+  componentWillMount() {
+    let at = this.getParameterByName('access_token');
+    if(at) {
+      var spotifyApi = new SpotifyWebApi();
+      spotifyApi.setAccessToken(at);
+      spotifyApi.getUserPlaylists('dpaghari')
+      .then(function(data) {
+        console.log('User playlists', data);
+      }, function(err) {
+        console.error(err);
+      });
+      spotifyApi.getPlaylist('dpaghari', '6JMfX4X1l9yKOYa1zFnDqf')
+      .then(function(data) {
+        console.log(data);
+      this.setState({
+        songs: data.tracks.items,
+        playlistName: data.name
+      });
+    }.bind(this), function(err) {
+        console.error(err);
+      });
+    }
+    else {
+      this.loginToSpotify();
+    }
   }
 
   filterList(e) {
@@ -42,11 +58,11 @@ export default class Playlist extends React.Component {
   }
 
   render() {
-
+    let playlistName = this.state.playlistName || 'Vibes';
     return (
       <div className="playList">
         <div className="playList__img-wrapper">
-          <h1>Vibes</h1>
+          <h1>{playlistName}</h1>
           <img className="playList__img" src="https://images.pexels.com/photos/387982/pexels-photo-387982.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb"/>
         </div>
         <ul>
@@ -54,6 +70,18 @@ export default class Playlist extends React.Component {
         </ul>
       </div>
     );
+  }
+
+  loginToSpotify() {
+    spotifyHelper.login(function(accessToken) {
+      console.log(accessToken);
+      spotifyHelper.getUserData(accessToken)
+                   .then(function(response) {
+
+                      // loginButton.style.display = 'none';
+                      // resultsPlaceholder.innerHTML = template(response);
+                   });
+    });
   }
 
   renderAddSongForm() {
@@ -94,24 +122,37 @@ export default class Playlist extends React.Component {
       songs: this.state.songs
     });
   }
+  getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[#?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
 
     renderSongs() {
     let songs = this.state.songs;
     return songs.map((song, idx) => {
-        // const { songName, albumName, artistName, albumImg } = song;
-        console.log(song);
         if(song.track) {
           var songName = song.track.name;
           var artistName = song.track.artists[0].name;
           var albumName = song.track.album.name;
-          var albumImg = song.track.album.images[0].url
+          var albumImg = song.track.album.images[0].url;
+          var songPlayURL = song.track.external_urls.spotify;
           return (
             <li key={ idx }>
             <img src={albumImg} alt={albumImg}/>
             <div className="songInfo">
-            <h3>{songName}</h3>
-            <h5>{artistName}</h5>
-            <h6>{albumName}</h6>
+              <a href={songPlayURL}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/>
+              </svg>
+              </a>
+              <h3>{songName}</h3>
+              <h5>{artistName}</h5>
+              <h6>{albumName}</h6>
             </div>
             </li>
           );
