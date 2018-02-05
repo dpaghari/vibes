@@ -11,40 +11,50 @@ export default class Playlist extends React.Component {
     super();
     this.filterList = this.filterList.bind(this);
     this.state = {
-      songs: props.songs,
       addingSong: false,
       spotify: {},
-      playlistName: 'Vibes',
-      access_token: ''
+      access_token: '',
+      userPlaylists: [],
+      currentPlaylist: {}
     };
 
   }
 
   componentWillMount() {
-    let at = this.getParameterByName('access_token');
-    if(at) {
-      var spotifyApi = new SpotifyWebApi();
-      spotifyApi.setAccessToken(at);
-      spotifyApi.getUserPlaylists('dpaghari')
+    let accessToken = this.getParameterByName('access_token');
+    if(accessToken) {
+
+      this.state.spotify = new SpotifyWebApi();
+      this.state.spotify.setAccessToken(accessToken);
+      this.state.spotify.getUserPlaylists('dpaghari')
       .then(function(data) {
-        console.log('User playlists', data);
-      }, function(err) {
+        this.state.userPlaylists = data.items;
+        this.loadPlaylist(this.state.userPlaylists[3].id);
+      }.bind(this),
+      function(err) {
         console.error(err);
       });
-      spotifyApi.getPlaylist('dpaghari', '6JMfX4X1l9yKOYa1zFnDqf')
-      .then(function(data) {
-        console.log(data);
-      this.setState({
-        songs: data.tracks.items,
-        playlistName: data.name
-      });
-    }.bind(this), function(err) {
-        console.error(err);
-      });
+
     }
     else {
       this.loginToSpotify();
     }
+  }
+
+  componentDidMount() {
+    // console.log(this.state);
+  }
+
+  loadPlaylist(playListId) {
+    this.state.spotify.getPlaylist('dpaghari', playListId)
+    .then(function(data) {
+
+    this.setState({
+      currentPlaylist: data
+    });
+  }.bind(this), function(err) {
+      console.error(err);
+    });
   }
 
   filterList(e) {
@@ -58,29 +68,48 @@ export default class Playlist extends React.Component {
   }
 
   render() {
-    let playlistName = this.state.playlistName || 'Vibes';
+
+    let { name, images } = this.state.currentPlaylist;
+    let playListImg = images && images[0] ? images[0].url : "";
+
     return (
       <div className="playList">
-        <div className="playList__img-wrapper">
-          <h1>{playlistName}</h1>
-          <img className="playList__img" src="https://images.pexels.com/photos/387982/pexels-photo-387982.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb"/>
+        <ul className="playList__nav">{ this.renderPlaylists() }</ul>
+        <div className="playList__wrapper">
+          <div className="playList__img-wrapper">
+            <h1>{name}</h1>
+            <img className="playList__img" src={playListImg}/>
+          </div>
+          <ul>
+            { this.renderSongs() }
+          </ul>
         </div>
-        <ul>
-          { this.renderSongs() }
-        </ul>
       </div>
     );
   }
 
+  renderPlaylists() {
+    return this.state.userPlaylists.map((playList, idx) => {
+      let image = playList.images[0] ? playList.images[0].url : "";
+      return (
+        <li className="c-playListNav__entry" key={idx}>
+          <a href="#" onClick={ this.switchPlaylists.bind(this, idx) }>
+            <span>{playList.name}</span>
+            <img src={image} alt={playList.name}/>
+          </a>
+        </li>
+      );
+    });
+  }
+
+  switchPlaylists(idx, e) {
+    e.preventDefault();
+    this.loadPlaylist(this.state.userPlaylists[idx].id);
+  }
+
   loginToSpotify() {
     spotifyHelper.login(function(accessToken) {
-      console.log(accessToken);
-      spotifyHelper.getUserData(accessToken)
-                   .then(function(response) {
-
-                      // loginButton.style.display = 'none';
-                      // resultsPlaceholder.innerHTML = template(response);
-                   });
+      spotifyHelper.getUserData(accessToken).then(function(response) {});
     });
   }
 
@@ -133,30 +162,33 @@ export default class Playlist extends React.Component {
   }
 
     renderSongs() {
-    let songs = this.state.songs;
-    return songs.map((song, idx) => {
-        if(song.track) {
-          var songName = song.track.name;
-          var artistName = song.track.artists[0].name;
-          var albumName = song.track.album.name;
-          var albumImg = song.track.album.images[0].url;
-          var songPlayURL = song.track.external_urls.spotify;
-          return (
-            <li key={ idx }>
-            <img src={albumImg} alt={albumImg}/>
-            <div className="songInfo">
-              <a href={songPlayURL}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/>
-              </svg>
-              </a>
-              <h3>{songName}</h3>
-              <h5>{artistName}</h5>
-              <h6>{albumName}</h6>
-            </div>
-            </li>
-          );
-        }
-    });
+      // console.log(this.state.currentPlaylist);
+    let { tracks } = this.state.currentPlaylist;
+    console.log(this.state);
+
+    let songs = tracks ? tracks.items : [];
+
+    if(songs) {
+      return songs.map((song, idx) => {
+          if(song) {
+            let { name, artists, album } = song.track;
+            var songName = name;
+            var artistName = artists[0].name;
+            var albumName = album.name;
+            var albumImg = album.images[0] ? album.images[0].url : '';
+            return (
+              <li key={ idx }>
+              <img src={albumImg} alt={albumImg}/>
+              <div className="songInfo">
+                <h3>{songName}</h3>
+                <h5>{artistName}</h5>
+                <h6>{albumName}</h6>
+              </div>
+              </li>
+            );
+          }
+      });
+    }
+
   }
 }

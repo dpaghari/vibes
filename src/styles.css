@@ -25,13 +25,18 @@
   font-family: 'Leafy', 'Source Sans Pro', sans-serif; }
 
 .playList {
-  height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   margin: 0 auto;
   align-items: center;
   color: #444;
   /*max-width: 680px*/ }
+  .playList__nav {
+    display: flex; }
+  .playList__wrapper {
+    width: 100%;
+    display: flex; }
 
 .playList .playList__img {
   width: 500px;
@@ -39,9 +44,7 @@
 
 .playList ul {
   list-style-type: none;
-  width: 80%;
   padding: 20px;
-  max-height: 75vh;
   overflow-y: auto; }
 
 .playList ul li {

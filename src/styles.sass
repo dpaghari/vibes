@@ -24,14 +24,20 @@
 
 
 .playList
-  height: 100%
+  // height: 100%
   display: flex
+  flex-direction: column
   justify-content: space-around
   margin: 0 auto
   align-items: center
   color: #444
   /*max-width: 680px*/
 
+  &__nav
+    display: flex
+  &__wrapper
+    width: 100%
+    display: flex
 
 .playList .playList__img
   width: 500px
@@ -40,12 +46,8 @@
 
 .playList ul
   list-style-type: none
-  width: 80%
   padding: 20px
-  max-height: 75vh
   overflow-y: auto
-
-
 
 .playList ul li
   display: flex
