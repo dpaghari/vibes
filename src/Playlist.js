@@ -41,7 +41,7 @@ export default class Playlist extends React.Component {
   }
 
   componentDidMount() {
-    // console.log(this.state);
+
   }
 
   loadPlaylist(playListId) {
@@ -75,6 +75,7 @@ export default class Playlist extends React.Component {
       <div className="playList">
         <ul className="playList__nav">{ this.renderPlaylists() }</ul>
         <div className="playList__wrapper">
+
           <div className="playList__img-wrapper">
             <h1>{name}</h1>
             <img className="playList__img" src={playListImg}/>
@@ -83,6 +84,7 @@ export default class Playlist extends React.Component {
             { this.renderSongs() }
           </ul>
         </div>
+
       </div>
     );
   }
@@ -91,7 +93,7 @@ export default class Playlist extends React.Component {
     return this.state.userPlaylists.map((playList, idx) => {
       let image = playList.images[0] ? playList.images[0].url : "";
       return (
-        <li className="c-playListNav__entry" key={idx}>
+        <li className="c-playList__nav-entry" key={idx}>
           <a href="#" onClick={ this.switchPlaylists.bind(this, idx) }>
             <img src={image} alt={playList.name}/>
           </a>
@@ -160,9 +162,8 @@ export default class Playlist extends React.Component {
   }
 
     renderSongs() {
-      // console.log(this.state.currentPlaylist);
     let { tracks } = this.state.currentPlaylist;
-    console.log(this.state);
+    
 
     let songs = tracks ? tracks.items : [];
 

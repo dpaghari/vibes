@@ -34,15 +34,21 @@
   /*max-width: 680px*/
 
   &__nav
+    width: 100%
     display: flex
-    position: sticky
-    top: 0
-    left: 0
-    right: 0
     max-height: 200px
-    background: rgba(241, 174, 59, 0.6)
+    // background: rgba(241, 174, 59, 0.6)
+    padding-bottom: 12px
+    margin-bottom: 12px
+    border-bottom: 1px solid #f1f1f1
     width: 100%
     justify-content: center
+    a
+      transform: scale(1)
+      transition: transform 0.2s
+
+      &:hover
+        transform: scale(1.1)
     img
       max-height: 64px
 
@@ -50,57 +56,43 @@
     width: 100%
     display: flex
 
-.playList .playList__img
-  width: 256px
-  height: 256px
+  &__img
+    width: 256px
+    height: 256px
+  &__img-wrapper
+    background: #f5f8f7
+    display: flex
+    width: 30%
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    padding: 48px
+    max-height: 600px
+  &__songList
+    width: 66%
+  &__img-wrapper h1
+    font-size: 4em
+    margin: 24px auto
+    font-family: 'Leafy', sans-serif
+    text-align: center
+  &__songList
+    img
+      max-height: 25px
+  &__songList li:nth-child(2n+1)
+    background: #f1f1f1
 
 
 .playList ul
   list-style-type: none
-  padding: 20px
   max-height: 600px
   overflow-y: auto
 
 .playList ul li
   display: flex
-  /*justify-content: space-around*/
   align-items: center
-  // margin: 12px auto
   padding: 6px
-  // border-bottom: 1px solid #f6f6f6
 
-
-.playList .playList__img-wrapper
-  background: #f5f8f7
-  // height: 100%
-  width: 33%
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  padding: 48px
-  max-height: 600px
-
-.playList__songList
-  width: 66%
-
-
-.playList .playList__img-wrapper h1
-  font-size: 6em
-  margin: 24px auto
-  font-family: 'Leafy', sans-serif
-  text-align: center
-
-.playList__songList
-  img
-    max-height: 25px
-
-
-.playList
-  &__songList li:nth-child(2n+1)
-    background: #f1f1f1
-
-.playList ul li .songInfo
+.songInfo
   font-family: 'Source Sans Pro', sans-serif
   display: flex
   justify-content: space-between
@@ -108,6 +100,10 @@
   width: 100%
 
 
+
+.songInfo
+  h3, h5, h6
+    width: 33%
 
 .songInfo h3
   font-size: 12px
