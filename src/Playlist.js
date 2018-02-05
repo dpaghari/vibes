@@ -23,7 +23,6 @@ export default class Playlist extends React.Component {
   componentWillMount() {
     let accessToken = this.getParameterByName('access_token');
     if(accessToken) {
-
       this.state.spotify = new SpotifyWebApi();
       this.state.spotify.setAccessToken(accessToken);
       this.state.spotify.getUserPlaylists('dpaghari')
@@ -80,7 +79,7 @@ export default class Playlist extends React.Component {
             <h1>{name}</h1>
             <img className="playList__img" src={playListImg}/>
           </div>
-          <ul>
+          <ul className="playList__songList">
             { this.renderSongs() }
           </ul>
         </div>
@@ -94,7 +93,6 @@ export default class Playlist extends React.Component {
       return (
         <li className="c-playListNav__entry" key={idx}>
           <a href="#" onClick={ this.switchPlaylists.bind(this, idx) }>
-            <span>{playList.name}</span>
             <img src={image} alt={playList.name}/>
           </a>
         </li>
