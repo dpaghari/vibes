@@ -10,6 +10,107 @@
   font-family: 'Leafy';
   src: url("./fonts/leafy.otf"); }
 
+.c-playList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  align-items: center;
+  color: #4a4a4a; }
+  .c-playList__nav {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 48px;
+    margin-top: 48px;
+    border-top: 2px solid #f1f1f1;
+    width: 80%;
+    justify-content: center; }
+  .c-playList__nav-entry {
+    margin: 24px;
+    transform: scale(1);
+    box-shadow: 0px 2px 10px #d9d9d9;
+    transition: all 0.2s ease-in-out; }
+    .c-playList__nav-entry:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 6px 24px #d9d9d9; }
+    .c-playList__nav-entry a img {
+      max-width: 240px; }
+  .c-playList__wrapper {
+    width: 100%;
+    display: flex;
+    height: 100vh; }
+  .c-playList__img-wrapper {
+    background: #f5f8f7;
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px; }
+  .c-playList__img {
+    max-width: 360px;
+    max-height: 360px; }
+  .c-playList__songList {
+    width: 60%;
+    margin-left: 24px;
+    overflow-x: visible; }
+  .c-playList__img-wrapper h1 {
+    font-size: 5em;
+    margin: 12px auto;
+    font-family: 'Podriq','Leafy', sans-serif;
+    text-align: center;
+    position: relative;
+    z-index: 0; }
+  .c-playList__songList {
+    overflow-y: auto;
+    width: 100%; }
+    .c-playList__songList img {
+      max-height: 25px; }
+  .c-playList__songList li:nth-child(2n+1) {
+    background: #f1f1f1; }
+
+.c-playList ul {
+  list-style-type: none; }
+
+.c-playList ul li a {
+  display: flex;
+  align-items: center;
+  padding: 6px;
+  text-decoration: none;
+  color: #4a4a4a; }
+
+.c-song {
+  background: white;
+  position: relative;
+  transition: 0.2s all ease-in-out;
+  box-shadow: 0px 2px 10px #d9d9d9;
+  perspective: 500px;
+  width: 90%;
+  margin: 0 auto; }
+  .c-song:hover {
+    transform: translate3d(-20px, 0, 60px);
+    box-shadow: 0px 4px 16px #d9d9d9;
+    z-index: 10; }
+
+.c-songInfo {
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%; }
+
+.c-songInfo h3, .c-songInfo h5, .c-songInfo h6 {
+  width: 33%; }
+
+.c-songInfo h3 {
+  font-size: 12px;
+  margin: 0 60px; }
+
+.c-songInfo h4, .c-songInfo h5 {
+  font-size: 10px;
+  margin: 0 60px; }
+
 * {
   padding: 0;
   margin: 0;
@@ -22,83 +123,4 @@
   height: 100vh;
   max-width: 1260px;
   margin: 0 auto;
-  font-family: 'Leafy', 'Source Sans Pro', sans-serif; }
-
-.playList {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin: 0 auto;
-  align-items: center;
-  color: #444;
-  /*max-width: 680px*/ }
-  .playList__nav {
-    width: 100%;
-    display: flex;
-    max-height: 200px;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #f1f1f1;
-    width: 100%;
-    justify-content: center; }
-    .playList__nav a {
-      transform: scale(1);
-      transition: transform 0.2s; }
-      .playList__nav a:hover {
-        transform: scale(1.1); }
-    .playList__nav img {
-      max-height: 64px; }
-  .playList__wrapper {
-    width: 100%;
-    display: flex; }
-  .playList__img {
-    width: 256px;
-    height: 256px; }
-  .playList__img-wrapper {
-    background: #f5f8f7;
-    display: flex;
-    width: 30%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 48px;
-    max-height: 600px; }
-  .playList__songList {
-    width: 66%; }
-  .playList__img-wrapper h1 {
-    font-size: 4em;
-    margin: 24px auto;
-    font-family: 'Leafy', sans-serif;
-    text-align: center; }
-  .playList__songList img {
-    max-height: 25px; }
-  .playList__songList li:nth-child(2n+1) {
-    background: #f1f1f1; }
-
-.playList ul {
-  list-style-type: none;
-  max-height: 600px;
-  overflow-y: auto; }
-
-.playList ul li {
-  display: flex;
-  align-items: center;
-  padding: 6px; }
-
-.songInfo {
-  font-family: 'Source Sans Pro', sans-serif;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  width: 100%; }
-
-.songInfo h3, .songInfo h5, .songInfo h6 {
-  width: 33%; }
-
-.songInfo h3 {
-  font-size: 12px;
-  margin: 0 60px; }
-
-.songInfo h4, .songInfo h5 {
-  font-size: 10px;
-  margin: 0 60px; }
+  font-family: "Leafy", "Source Sans Pro", sans-serif; }

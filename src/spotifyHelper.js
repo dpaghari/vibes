@@ -5,8 +5,11 @@ module.exports = {
   getUserData
 };
 function login(callback) {
+
   var CLIENT_ID = '0696905272324e6c9cff8bc6aaa8864e';
-  var REDIRECT_URI = 'http://localhost:3000/callback';
+
+  var REDIRECT_URI = 'http://localhost:3000';
+  // var REDIRECT_URI = 'http://vibes.danielpagharion.com';
   function getLoginURL(scopes) {
     return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID +
       '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) +
@@ -18,13 +21,13 @@ function login(callback) {
     'user-read-email'
   ]);
 
-  var width = 450,
-      height = 730,
-      left = (window.screen.width / 2) - (width / 2),
-      top = (window.screen.height / 2) - (height / 2);
+  // var width = 450,
+  //     height = 730,
+  //     left = (window.screen.width / 2) - (width / 2),
+  //     top = (window.screen.height / 2) - (height / 2);
 
   window.addEventListener("message", function(event) {
-      console.log(event);
+      // console.log(event);
       var hash = event;
       if (hash.type == 'access_token') {
           callback(hash.access_token);

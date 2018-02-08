@@ -1,12 +1,7 @@
-@font-face
-  font-family: 'Podriq'
-  src: url('./fonts/Podriq.otf')
-@font-face
-  font-family: 'Rosarina'
-  src: url('./fonts/rosarina.ttf')
-@font-face
-  font-family: 'Leafy'
-  src: url('./fonts/leafy.otf')
+@import "colors"
+@import "typography"
+
+@import "components/playlist"
 
 *
   padding: 0
@@ -20,95 +15,4 @@
   height: 100vh
   max-width: 1260px
   margin: 0 auto
-  font-family: 'Leafy', 'Source Sans Pro', sans-serif
-
-
-.playList
-  // height: 100%
-  display: flex
-  flex-direction: column
-  justify-content: space-around
-  margin: 0 auto
-  align-items: center
-  color: #444
-  /*max-width: 680px*/
-
-  &__nav
-    width: 100%
-    display: flex
-    max-height: 200px
-    // background: rgba(241, 174, 59, 0.6)
-    padding-bottom: 12px
-    margin-bottom: 12px
-    border-bottom: 1px solid #f1f1f1
-    width: 100%
-    justify-content: center
-    a
-      transform: scale(1)
-      transition: transform 0.2s
-
-      &:hover
-        transform: scale(1.1)
-    img
-      max-height: 64px
-
-  &__wrapper
-    width: 100%
-    display: flex
-
-  &__img
-    width: 256px
-    height: 256px
-  &__img-wrapper
-    background: #f5f8f7
-    display: flex
-    width: 30%
-    flex-direction: column
-    justify-content: center
-    align-items: center
-    padding: 48px
-    max-height: 600px
-  &__songList
-    width: 66%
-  &__img-wrapper h1
-    font-size: 4em
-    margin: 24px auto
-    font-family: 'Leafy', sans-serif
-    text-align: center
-  &__songList
-    img
-      max-height: 25px
-  &__songList li:nth-child(2n+1)
-    background: #f1f1f1
-
-
-.playList ul
-  list-style-type: none
-  max-height: 600px
-  overflow-y: auto
-
-.playList ul li
-  display: flex
-  align-items: center
-  padding: 6px
-
-.songInfo
-  font-family: 'Source Sans Pro', sans-serif
-  display: flex
-  justify-content: space-between
-  align-items: stretch
-  width: 100%
-
-
-
-.songInfo
-  h3, h5, h6
-    width: 33%
-
-.songInfo h3
-  font-size: 12px
-  margin: 0 60px
-
-.songInfo h4, .songInfo h5
-  font-size: 10px
-  margin: 0 60px
+  font-family: $font-stack

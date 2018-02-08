@@ -1,9 +1,11 @@
 import SpotifyWebApi from 'spotify-web-api-js';
 import spotifyHelper from './spotifyHelper';
 
+import { getParameterByName } from './util';
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+
 const moment = require('moment');
 
 export default class Playlist extends React.Component {
@@ -21,14 +23,14 @@ export default class Playlist extends React.Component {
   }
 
   componentWillMount() {
-    let accessToken = this.getParameterByName('access_token');
+    let accessToken = getParameterByName('access_token');
     if(accessToken) {
       this.state.spotify = new SpotifyWebApi();
       this.state.spotify.setAccessToken(accessToken);
       this.state.spotify.getUserPlaylists('dpaghari')
       .then(function(data) {
         this.state.userPlaylists = data.items;
-        this.loadPlaylist(this.state.userPlaylists[3].id);
+        this.loadPlaylist(this.state.userPlaylists[0].id);
       }.bind(this),
       function(err) {
         console.error(err);
@@ -40,18 +42,13 @@ export default class Playlist extends React.Component {
     }
   }
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   loadPlaylist(playListId) {
     this.state.spotify.getPlaylist('dpaghari', playListId)
     .then(function(data) {
-
-    this.setState({
-      currentPlaylist: data
-    });
-  }.bind(this), function(err) {
+    this.setState({currentPlaylist: data});
+    }.bind(this), function(err) {
       console.error(err);
     });
   }
@@ -69,22 +66,21 @@ export default class Playlist extends React.Component {
   render() {
 
     let { name, images } = this.state.currentPlaylist;
+    console.log(this.state.currentPlaylist);
     let playListImg = images && images[0] ? images[0].url : "";
 
     return (
-      <div className="playList">
-        <ul className="playList__nav">{ this.renderPlaylists() }</ul>
-        <div className="playList__wrapper">
-
-          <div className="playList__img-wrapper">
+      <div className="c-playList">
+        <div className="c-playList__wrapper">
+          <div className="c-playList__img-wrapper">
             <h1>{name}</h1>
-            <img className="playList__img" src={playListImg}/>
+            <img className="c-playList__img" src={ playListImg }/>
           </div>
-          <ul className="playList__songList">
+          <ul className="c-playList__songList">
             { this.renderSongs() }
           </ul>
         </div>
-
+        <ul className="c-playList__nav">{ this.renderPlaylists() }</ul>
       </div>
     );
   }
@@ -93,9 +89,9 @@ export default class Playlist extends React.Component {
     return this.state.userPlaylists.map((playList, idx) => {
       let image = playList.images[0] ? playList.images[0].url : "";
       return (
-        <li className="c-playList__nav-entry" key={idx}>
+        <li className="c-playList__nav-entry" key={ idx }>
           <a href="#" onClick={ this.switchPlaylists.bind(this, idx) }>
-            <img src={image} alt={playList.name}/>
+            <img src={ image } alt={ playList.name }/>
           </a>
         </li>
       );
@@ -104,6 +100,7 @@ export default class Playlist extends React.Component {
 
   switchPlaylists(idx, e) {
     e.preventDefault();
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
     this.loadPlaylist(this.state.userPlaylists[idx].id);
   }
 
@@ -116,7 +113,7 @@ export default class Playlist extends React.Component {
   renderAddSongForm() {
     if(this.state.addingSong) {
       return (
-        <form className="songList__songForm" onSubmit={this.addNewSong.bind(this)}>
+        <form className="c-songList__songForm" onSubmit={ this.addNewSong.bind(this) }>
           <label>Song Name:</label>
           <input ref="songName" type="text"/><br/>
           <label>Song Location:</label>
@@ -151,43 +148,35 @@ export default class Playlist extends React.Component {
       songs: this.state.songs
     });
   }
-  getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[#?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-  }
 
-    renderSongs() {
+
+  renderSongs() {
     let { tracks } = this.state.currentPlaylist;
-    
-
     let songs = tracks ? tracks.items : [];
-
     if(songs) {
       return songs.map((song, idx) => {
-          if(song) {
-            let { name, artists, album } = song.track;
-            var songName = name;
-            var artistName = artists[0].name;
-            var albumName = album.name;
-            var albumImg = album.images[0] ? album.images[0].url : '';
-            return (
-              <li key={ idx }>
-              <img src={albumImg} alt={albumImg}/>
-              <div className="songInfo">
-                <h3>{songName}</h3>
-                <h5>{artistName}</h5>
-                <h6>{albumName}</h6>
+        if(song) {
+          let { name, artists, album, external_urls } = song.track;
+          let songName = name;
+          let artistName = artists[0].name;
+          let albumName = album.name;
+          let albumImg = album.images[0] ? album.images[0].url : '';
+          let playLink = external_urls.spotify;
+
+          return (
+            <li className="c-song" key={ idx }>
+              <a href={ playLink } target="_blank">
+              <img src={ albumImg } alt={ albumImg }/>
+              <div className="c-songInfo">
+                <h3>{ songName }</h3>
+                <h5>{ artistName }</h5>
+                <h6>{ albumName }</h6>
               </div>
-              </li>
-            );
-          }
+              </a>
+            </li>
+          );
+        }
       });
     }
-
   }
 }
