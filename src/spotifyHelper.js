@@ -21,15 +21,9 @@ function login(callback) {
     'user-read-email'
   ]);
 
-  // var width = 450,
-  //     height = 730,
-  //     left = (window.screen.width / 2) - (width / 2),
-  //     top = (window.screen.height / 2) - (height / 2);
-
   window.addEventListener("message", function(event) {
-      // console.log(event);
       var hash = event;
-      if (hash.type == 'access_token') {
+      if (hash.type === 'access_token') {
           callback(hash.access_token);
       }
   }, false);
