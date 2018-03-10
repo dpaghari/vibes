@@ -1,10 +1,6 @@
 import React from 'react';
 
 export default class Song extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //
-  // }
 
   render() {
     if(this.props.track) {
@@ -27,7 +23,5 @@ export default class Song extends React.Component {
         </li>
       );
     }
-
   }
-
 }

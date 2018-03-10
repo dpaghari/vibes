@@ -6,20 +6,36 @@
   align-items: center
   color: $charcoal
 
-  &__nav
+  &__content
+    display: flex
+    width: 100%
+    transition: 0.4s width ease-in
+
+  &__drawer
     width: 100%
     display: flex
     flex-wrap: wrap
-    padding-top: 48px
-    margin-top: 48px
-    border-top: 2px solid $shadowGray
-    width: 80%
     justify-content: center
+    background: white
+    position: relative
+    left: 0
+    border-right: 1px solid $lightGray
+    background: linear-gradient(to bottom, rgb(113, 183, 228), #4a4a4a)
+    &--is-collapsed
+    button
+      width: 36px
+      height: 36px
+      border: none
+      margin: 12px auto
+      cursor: pointer
+      img
+        width: 100%
+        height: 100%
 
-  &__nav-entry
+  &__drawer-entry
     margin: 24px
     transform: scale(1)
-    box-shadow: 0px 2px 10px #d9d9d9
+    // box-shadow: 0px 2px 10px #d9d9d9
     transition: all 0.2s ease-in-out
     @media only screen and (max-width: $tablet)
       max-width: 240px
@@ -36,7 +52,8 @@
   &__wrapper
     width: 100%
     display: flex
-    height: 100vh
+    flex-direction: column
+    // height: 100vh
 
   &__img-wrapper
     background: #f5f8f7
@@ -67,7 +84,7 @@
 
   &__songList
     overflow-y: auto
-    width: 100%
+    width: 60%
     img
       max-height: 25px
 
@@ -83,35 +100,3 @@
   padding: 6px
   text-decoration: none
   color: $charcoal
-
-.c-song
-  background: white
-  position: relative
-  transition: 0.2s all ease-in-out
-  box-shadow: 0px 2px 10px #d9d9d9
-  perspective: 500px
-  width: 90%
-  margin: 0 auto
-  &:hover
-    transform: translate3d(-20px, 0, 60px)
-    box-shadow: 0px 4px 16px #d9d9d9
-    z-index: 10
-
-.c-songInfo
-  font-family: 'Source Sans Pro', sans-serif
-  display: flex
-  justify-content: space-between
-  align-items: stretch
-  width: 100%
-
-.c-songInfo
-  h3, h5, h6
-    width: 33%
-
-.c-songInfo h3
-  font-size: 12px
-  margin: 0 60px
-
-.c-songInfo h4, .c-songInfo h5
-  font-size: 10px
-  margin: 0 60px

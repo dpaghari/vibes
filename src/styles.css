@@ -17,34 +17,47 @@
   margin: 0 auto;
   align-items: center;
   color: #4a4a4a; }
-  .c-playList__nav {
+  .c-playList__content {
+    display: flex;
+    width: 100%;
+    transition: 0.4s width ease-in; }
+  .c-playList__drawer {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    padding-top: 48px;
-    margin-top: 48px;
-    border-top: 2px solid #f1f1f1;
-    width: 80%;
-    justify-content: center; }
-  .c-playList__nav-entry {
+    justify-content: center;
+    background: white;
+    position: relative;
+    left: 0;
+    border-right: 1px solid #eee;
+    background: linear-gradient(to bottom, #71b7e4, #4a4a4a); }
+    .c-playList__drawer button {
+      width: 36px;
+      height: 36px;
+      border: none;
+      margin: 12px auto;
+      cursor: pointer; }
+      .c-playList__drawer button img {
+        width: 100%;
+        height: 100%; }
+  .c-playList__drawer-entry {
     margin: 24px;
     transform: scale(1);
-    box-shadow: 0px 2px 10px #d9d9d9;
     transition: all 0.2s ease-in-out; }
     @media only screen and (max-width: 768px) {
-      .c-playList__nav-entry {
+      .c-playList__drawer-entry {
         max-width: 240px;
         max-height: 240px; } }
-    .c-playList__nav-entry:hover {
+    .c-playList__drawer-entry:hover {
       transform: scale(1.1);
       box-shadow: 0px 6px 24px #d9d9d9; }
-    .c-playList__nav-entry a img {
+    .c-playList__drawer-entry a img {
       max-width: 240px;
       max-height: 240px; }
   .c-playList__wrapper {
     width: 100%;
     display: flex;
-    height: 100vh; }
+    flex-direction: column; }
   .c-playList__img-wrapper {
     background: #f5f8f7;
     display: flex;
@@ -69,7 +82,7 @@
     z-index: 0; }
   .c-playList__songList {
     overflow-y: auto;
-    width: 100%; }
+    width: 60%; }
     .c-playList__songList img {
       max-height: 25px; }
   .c-playList__songList li:nth-child(2n+1) {
@@ -103,7 +116,8 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  width: 100%; }
+  width: 100%;
+  text-overflow: ellipsis; }
 
 .c-songInfo h3, .c-songInfo h5, .c-songInfo h6 {
   width: 33%; }
@@ -126,6 +140,5 @@
 
 .site-wrapper {
   height: 100vh;
-  max-width: 1260px;
   margin: 0 auto;
   font-family: "Leafy", "Source Sans Pro", sans-serif; }

@@ -2,31 +2,42 @@ import React from 'react';
 
 
 export default class PlaylistDrawer extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      // collapsed: true
+    };
+  }
 
   render() {
     return (
-      <ul className="c-playList__nav">{ this.renderPlaylists() }</ul>
+      <ul className="c-playList__drawer">
+        { this.renderPlaylists() }
+      </ul>
     );
   }
 
+  // toggleCollapse() {
+  //   this.props.toggleCollapseContent();
+  //   this.setState({collapsed: !this.state.collapsed});
+  // }
+
   renderPlaylists() {
-    return this.props.userPlaylists.map((playList, idx) => {
+    let { userPlaylists, currentPlaylist, switchPlaylists } = this.props;
+    return userPlaylists.map((playlist, idx) => {
       // Don't display the currently active playlist
-      if(playList.id !== this.props.currentPlaylist.id) {
-        let image = playList.images[0] ? playList.images[0].url : "";
+      if(playlist.id !== currentPlaylist.id) {
+        let image = playlist.images[0] ? playlist.images[0].url : "";
         return (
-          <li className="c-playList__nav-entry" key={ idx }>
-            <a href="/" onClick={ this.props.switchPlaylists.bind(this, idx) }>
-              <img src={ image } alt={ playList.name }/>
+          <li className="c-playList__drawer-entry" key={ idx }>
+            <a href="/" onClick={ switchPlaylists.bind(this, idx) }>
+              <img src={ image } alt={ playlist.name } />
             </a>
           </li>
         );
       }
-      else return null;
-
+      else
+        return null;
     });
   }
 }
