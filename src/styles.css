@@ -6,10 +6,6 @@
   font-family: 'Rosarina';
   src: url("./fonts/rosarina.ttf"); }
 
-@font-face {
-  font-family: 'Leafy';
-  src: url("./fonts/leafy.otf"); }
-
 .c-playList {
   display: flex;
   flex-direction: column;
@@ -17,6 +13,18 @@
   margin: 0 auto;
   align-items: center;
   color: #4a4a4a; }
+  .c-playList__header {
+    min-height: 100px;
+    color: #4a4a4a; }
+    .c-playList__header h1 {
+      letter-spacing: 4px;
+      display: inline-block;
+      margin: 12px 0 12px 24px;
+      font-size: 2em;
+      font-weight: bolder;
+      padding-bottom: 3px;
+      border-top: 4px solid #4a4a4a;
+      border-bottom: 4px solid #4a4a4a; }
   .c-playList__content {
     display: flex;
     width: 100%;
@@ -29,8 +37,7 @@
     background: white;
     position: relative;
     left: 0;
-    border-right: 1px solid #eee;
-    background: linear-gradient(to bottom, #71b7e4, #4a4a4a); }
+    border-right: 1px solid #eee; }
     .c-playList__drawer button {
       width: 36px;
       height: 36px;
@@ -59,40 +66,46 @@
     display: flex;
     flex-direction: column; }
   .c-playList__img-wrapper {
-    background: #f5f8f7;
     display: flex;
     width: 40%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 48px; }
-  .c-playList__img {
-    max-width: 360px;
-    max-height: 360px; }
+    padding: 48px;
+    position: relative;
+    min-height: 600px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom; }
   .c-playList__songList {
+    background: #f5f8f7;
     width: 60%;
     margin-left: 24px;
     overflow-x: visible; }
   .c-playList__img-wrapper h1 {
-    font-size: 5em;
-    margin: 12px auto;
-    font-family: 'Podriq','Leafy', sans-serif;
+    color: white;
+    font-family: 'Graduate', sans-serif;
+    font-size: 4em;
+    line-height: 1em;
+    padding: 12px;
+    text-shadow: 1px 1px 2px #4a4a4a;
     text-align: center;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    right: 0;
     z-index: 0; }
   .c-playList__songList {
     overflow-y: auto;
     width: 60%; }
     .c-playList__songList img {
       max-height: 25px; }
-  .c-playList__songList li:nth-child(2n+1) {
-    background: #f1f1f1; }
 
 .c-playList ul {
   list-style-type: none; }
 
 .c-playList ul li a {
   display: flex;
+  margin: 6px auto;
   align-items: center;
   padding: 6px;
   text-decoration: none;
@@ -111,24 +124,27 @@
     box-shadow: 0px 4px 16px #d9d9d9;
     z-index: 10; }
 
-.c-songInfo {
+.c-song__album-image {
+  margin-right: 24px; }
+
+.c-song__play-icon {
+  width: 12px; }
+
+.c-song__info {
   font-family: 'Source Sans Pro', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
   width: 100%;
   text-overflow: ellipsis; }
-
-.c-songInfo h3, .c-songInfo h5, .c-songInfo h6 {
-  width: 33%; }
-
-.c-songInfo h3 {
-  font-size: 12px;
-  margin: 0 60px; }
-
-.c-songInfo h4, .c-songInfo h5 {
-  font-size: 10px;
-  margin: 0 60px; }
+  .c-song__info h3, .c-song__info h5, .c-song__info h6 {
+    width: 33%; }
+  .c-song__info h3 {
+    font-size: 12px;
+    margin: 0 60px; }
+  .c-song__info h4, .c-song__info h5 {
+    font-size: 10px;
+    margin: 0 60px; }
 
 * {
   padding: 0;
@@ -141,4 +157,4 @@
 .site-wrapper {
   height: 100vh;
   margin: 0 auto;
-  font-family: "Leafy", "Source Sans Pro", sans-serif; }
+  font-family: "Source Sans Pro", sans-serif; }

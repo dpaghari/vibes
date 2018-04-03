@@ -6,6 +6,19 @@
   align-items: center
   color: $charcoal
 
+  &__header
+    min-height: 100px
+    color: $charcoal
+    h1
+      letter-spacing: 4px
+      display: inline-block
+      margin: 12px 0 12px 24px
+      font-size: 2em
+      font-weight: bolder
+      padding-bottom: 3px
+      border-top: 4px solid $charcoal
+      border-bottom: 4px solid $charcoal
+
   &__content
     display: flex
     width: 100%
@@ -20,8 +33,6 @@
     position: relative
     left: 0
     border-right: 1px solid $lightGray
-    background: linear-gradient(to bottom, rgb(113, 183, 228), #4a4a4a)
-    &--is-collapsed
     button
       width: 36px
       height: 36px
@@ -56,31 +67,43 @@
     // height: 100vh
 
   &__img-wrapper
-    background: #f5f8f7
+    // background: #f5f8f7
     display: flex
     width: 40%
     flex-direction: column
     justify-content: center
     align-items: center
     padding: 48px
+    position: relative
+    min-height: 600px
+    background-size: cover
+    background-repeat: no-repeat
+    background-position: bottom
 
   &__img
-    max-width: 360px
-    max-height: 360px
 
 
   &__songList
+    background: #f5f8f7
     width: 60%
     margin-left: 24px
     overflow-x: visible
 
   &__img-wrapper h1
-    font-size: 5em
-    margin: 12px auto
-    font-family: 'Podriq','Leafy', sans-serif
+    color: white
+    font-family: 'Graduate', sans-serif
+    font-size: 4em
+    line-height: 1em
+    padding: 12px
+    text-shadow: 1px 1px 2px $charcoal
+    // margin: 12px auto
+    // font-family: 'Podriq','Leafy', sans-serif
     text-align: center
-    position: relative
+    position: absolute
+    bottom: 0
+    right: 0
     z-index: 0
+    // color: black
 
   &__songList
     overflow-y: auto
@@ -88,14 +111,15 @@
     img
       max-height: 25px
 
-  &__songList li:nth-child(2n+1)
-    background: $shadowGray
+  // &__songList li:nth-child(2n+1)
+    // background: $shadowGray
 
 .c-playList ul
   list-style-type: none
 
 .c-playList ul li a
   display: flex
+  margin: 6px auto
   align-items: center
   padding: 6px
   text-decoration: none

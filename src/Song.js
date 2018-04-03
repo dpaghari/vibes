@@ -10,14 +10,16 @@ export default class Song extends React.Component {
       let albumName = album.name;
       let albumImg = album.images[0] ? album.images[0].url : '';
       let playLink = external_urls.spotify;
+      let playIcon = './play-icon.svg';
       return (
         <li className="c-song">
           <a href={ playLink } target="_blank">
-            <img src={ albumImg } alt={ albumImg }/>
-            <div className="c-songInfo">
-              <h3>{ songName }</h3>
-              <h5>{ artistName }</h5>
-              <h6>{ albumName }</h6>
+            <img class="c-song__album-image" src={ albumImg } alt={ albumImg }/>
+            <img class="c-song__play-icon" src={ playIcon } alt={ playIcon }/>
+            <div className="c-song__info">
+              <h3 className="c-song__name">{ songName }</h3>
+              <h5 className="c-song__artist">{ artistName }</h5>
+              <h6 className="c-song__album">{ albumName }</h6>
             </div>
           </a>
         </li>

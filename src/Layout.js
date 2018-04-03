@@ -40,19 +40,22 @@ export default class Layout extends React.Component {
   }
 
   render() {
+    console.log(this.state.userPlaylists);
     let { name, images } = this.state.currentPlaylist;
-    let playListImg = images && images[0] ? images[0].url : "";
+    // let playListImg = images && images[0] ? images[0].url : "";
+    let playListImg = "./sprang.jpg";
+    console.log(playListImg);
     // let collapseClass = this.state.collapseContent ? 'c-playList__content c-playList__content--is-collapsed' : 'c-playList__content';
     return (
       <section className="c-playList">
         <div className="c-playList__wrapper">
-          <header>
-            Header Goes here
+          <header className="c-playList__header">
+            <h1>Yousic</h1>
           </header>
           <div className="c-playList__content">
-            <div className="c-playList__img-wrapper">
+            <div className="c-playList__img-wrapper" style={{'backgroundImage' : `url(${playListImg})`}}>
               <h1>{name}</h1>
-              <img className="c-playList__img" src={ playListImg } alt={name} />
+              {/* <img className="c-playList__img" src={ playListImg } alt={name} /> */}
             </div>
             <Songlist currentPlaylist={ this.state.currentPlaylist } />
           </div>
