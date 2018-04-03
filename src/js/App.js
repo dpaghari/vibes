@@ -1,4 +1,4 @@
-import './styles.css';
+import '../styles.css';
 // Custom Components
 import Layout from './Layout';
 

@@ -4,8 +4,8 @@ import spotifyHelper from './spotifyHelper';
 import { getParameterByName } from './util';
 import React from 'react';
 
-import Songlist from './Songlist';
-import PlaylistDrawer from './PlaylistDrawer';
+import Songlist from './components/Songlist';
+import PlaylistDrawer from './components/PlaylistDrawer';
 
 export default class Layout extends React.Component {
 
