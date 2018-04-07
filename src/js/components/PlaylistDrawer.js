@@ -11,7 +11,7 @@ export default class PlaylistDrawer extends React.Component {
 
   render() {
     return (
-      <ul className="c-playList__drawer">
+      <ul className="c-playlist__drawer">
         { this.renderPlaylists() }
       </ul>
     );
@@ -29,10 +29,8 @@ export default class PlaylistDrawer extends React.Component {
       if(playlist.id !== currentPlaylist.id) {
         let image = playlist.images[0] ? playlist.images[0].url : "";
         return (
-          <li className="c-playList__drawer-entry" key={ idx }>
-            <a href="/" onClick={ switchPlaylists.bind(this, idx) }>
-              <img src={ image } alt={ playlist.name } />
-            </a>
+          <li onClick={ switchPlaylists.bind(this, idx) } className="c-playlist__drawer-entry" key={ idx }>
+            <img src={ image } alt={ playlist.name } />
           </li>
         );
       }

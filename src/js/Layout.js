@@ -6,9 +6,21 @@ import React from 'react';
 
 import Songlist from './components/Songlist';
 import PlaylistDrawer from './components/PlaylistDrawer';
-
+// const albumImg_2018 = [
+//   {
+//     name: 'Sprang',
+//     img_url: 'https://image.ibb.co/kOpfhH/sprang.jpg'
+//   },
+//   {
+//     name: 'March',
+//     img_url: 'https://image.ibb.co/iNaWpx/jtree.jpg'
+//   },
+//   {
+//     name: 'February',
+//     img_url: 'https://image.ibb.co/ds70hH/beach.jpg'
+//   }
+// ];
 export default class Layout extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +28,7 @@ export default class Layout extends React.Component {
       access_token: '',
       userPlaylists: [],
       currentPlaylist: {},
-      // collapseContent: false
+      currentPlaylistIdx: 0
     };
   }
 
@@ -40,22 +52,19 @@ export default class Layout extends React.Component {
   }
 
   render() {
-    console.log(this.state.userPlaylists);
-    let { name, images } = this.state.currentPlaylist;
-    // let playListImg = images && images[0] ? images[0].url : "";
-    let playListImg = "./sprang.jpg";
-    console.log(playListImg);
-    // let collapseClass = this.state.collapseContent ? 'c-playList__content c-playList__content--is-collapsed' : 'c-playList__content';
+    let { currentPlaylist,  currentPlaylistIdx } = this.state;
+    let { name, images } = currentPlaylist;
+    let spotifyAlbumImg = images && images[0] ? images[0].url : "";
+    let playListImg = spotifyAlbumImg;
     return (
-      <section className="c-playList">
-        <div className="c-playList__wrapper">
-          <header className="c-playList__header">
+      <section className="c-playlist">
+        <div className="c-playlist__wrapper">
+          <header className="c-playlist__header">
             <h1>Yousic</h1>
           </header>
-          <div className="c-playList__content">
-            <div className="c-playList__img-wrapper" style={{'backgroundImage' : `url(${playListImg})`}}>
+          <div className="c-playlist__content">
+            <div className="c-playlist__img-wrapper" style={{'backgroundImage' : `url(${playListImg})`}}>
               <h1>{name}</h1>
-              {/* <img className="c-playList__img" src={ playListImg } alt={name} /> */}
             </div>
             <Songlist currentPlaylist={ this.state.currentPlaylist } />
           </div>
@@ -72,10 +81,13 @@ export default class Layout extends React.Component {
     this.setState({ collapseContent : !this.state.collapseContent });
   }
 
-  loadPlaylist(playListId) {
+  loadPlaylist(playListId, idx) {
     this.state.spotify.getPlaylist('dpaghari', playListId)
     .then(function(data) {
-    this.setState({currentPlaylist: data});
+    this.setState({
+      currentPlaylist: data,
+      currentPlaylistIdx: idx
+    });
     }.bind(this), function(err) {
       console.error(err);
     });
@@ -83,8 +95,8 @@ export default class Layout extends React.Component {
 
   switchPlaylists(idx, e) {
     e.preventDefault();
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
-    this.loadPlaylist(this.state.userPlaylists[idx].id);
+    document.body.scrollTop = 0;
+    this.loadPlaylist(this.state.userPlaylists[idx].id, idx);
   }
 
   loginToSpotify() {

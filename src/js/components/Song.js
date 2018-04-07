@@ -2,20 +2,44 @@ import React from 'react';
 
 export default class Song extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false,
+      songDuration: 0
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+  if (nextProps.isActive !== this.props.isActive) {
+    this.setState({
+      isActive: nextProps.isActive,
+      songDuration: nextProps.track.duration_ms });
+  }
+}
+
   render() {
-    if(this.props.track) {
-      let { name, artists, album, external_urls } = this.props.track;
+    console.log(this.state);
+    let { track, songNum } = this.props;
+
+    if(track) {
+      let { name, artists, album, external_urls } = track;
+
       let songName = name;
       let artistName = artists[0].name;
       let albumName = album.name;
       let albumImg = album.images[0] ? album.images[0].url : '';
       let playLink = external_urls.spotify;
-      let playIcon = './play-icon.svg';
+      // let playIcon = './play-icon.svg';
+
+      let classList = this.state.isActive ? 'c-song c-song--is-active' : 'c-song';
+
       return (
-        <li className="c-song">
-          <a href={ playLink } target="_blank">
-            <img class="c-song__album-image" src={ albumImg } alt={ albumImg }/>
-            <img class="c-song__play-icon" src={ playIcon } alt={ playIcon }/>
+        <li>
+          <a onClick={ this.setActiveSong.bind(this) } className={ classList } href='#'>
+            <img className="c-song__album-image" src={ albumImg } alt={ albumName }/>
+            { this.renderStatusIcon() }
             <div className="c-song__info">
               <h3 className="c-song__name">{ songName }</h3>
               <h5 className="c-song__artist">{ artistName }</h5>
@@ -25,5 +49,22 @@ export default class Song extends React.Component {
         </li>
       );
     }
+  }
+
+  renderStatusIcon() {
+    if(this.state.isActive) {
+      return (
+        <svg className="c-song__status-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11 22h-4v-20h4v20zm6-20h-4v20h4v-20z"/></svg>
+      );
+    }
+    else {
+      return (
+        <svg className="c-song__status-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 22v-20l18 10-18 10z"/></svg>
+      );
+    }
+  }
+
+  setActiveSong(playLink) {
+    this.props.setActiveSong(this.props.songNum);
   }
 }
