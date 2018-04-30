@@ -25,7 +25,6 @@ export default class Songlist extends React.Component {
     if(songs) {
       return songs.map((song, idx) => {
         let isActive = idx === activeSong;
-        console.log(isActive, idx, activeSong);
         return <Song key={idx} setActiveSong={this.setActiveSong.bind(this)} isActive={isActive} songNum={idx} {...song} />
       });
     }

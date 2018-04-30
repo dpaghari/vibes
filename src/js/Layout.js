@@ -6,20 +6,7 @@ import React from 'react';
 
 import Songlist from './components/Songlist';
 import PlaylistDrawer from './components/PlaylistDrawer';
-// const albumImg_2018 = [
-//   {
-//     name: 'Sprang',
-//     img_url: 'https://image.ibb.co/kOpfhH/sprang.jpg'
-//   },
-//   {
-//     name: 'March',
-//     img_url: 'https://image.ibb.co/iNaWpx/jtree.jpg'
-//   },
-//   {
-//     name: 'February',
-//     img_url: 'https://image.ibb.co/ds70hH/beach.jpg'
-//   }
-// ];
+
 export default class Layout extends React.Component {
   constructor(props) {
     super(props);
