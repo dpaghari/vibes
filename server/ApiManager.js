@@ -165,7 +165,7 @@ var ApiManager = (function(dbWrapper) {
   function addFollowerIdToRecipe(recipe_info, callback) {
     let { db } = dbWrapper;
     let { recipe_id, follower_id } = recipe_info;
-    console.log(recipe_info);
+    // console.log(recipe_info);
 
     db.getConnection(function(err, connection) {
       connection.query("SELECT `follower_ids` FROM `recipes` where `recipe_id` = ?", [recipe_id], (err, rows, fields) => {
@@ -260,7 +260,7 @@ var ApiManager = (function(dbWrapper) {
     let { db, mysql } = dbWrapper;
     for (var key in recipe_changes) {
       if (recipe_changes.hasOwnProperty(key)) {
-        console.log(key);
+        // console.log(key);
       }
     }
   }

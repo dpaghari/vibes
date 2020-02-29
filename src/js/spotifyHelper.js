@@ -7,7 +7,6 @@ module.exports = {
 function login(callback) {
 
   var CLIENT_ID = '0696905272324e6c9cff8bc6aaa8864e';
-  console.log(process.env.NODE_ENV);
   var REDIRECT_URI = 'http://localhost:3000';
   // var REDIRECT_URI = 'http://vibes.danielpagharion.com';
   function getLoginURL(scopes) {
@@ -37,7 +36,7 @@ function getUserData(accessToken) {
          'Authorization': 'Bearer ' + accessToken
       },
       success: function(response) {
-        console.log(response);
+
       }
   });
 }

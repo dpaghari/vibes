@@ -23,29 +23,26 @@ export default class Song extends React.Component {
     let { track, songNum } = this.props;
 
     if(track) {
-      let { name, artists, album, external_urls } = track;
+      let { name, artists, album, external_urls, uri } = track;
 
       let songName = name;
       let artistName = artists[0].name;
       let albumName = album.name;
       let albumImg = album.images[0] ? album.images[0].url : '';
-      let playLink = external_urls.spotify;
-      // let playIcon = './play-icon.svg';
-
+      let playLink = uri;
       let classList = this.state.isActive ? 'c-song c-song--is-active' : 'c-song';
 
       return (
-        <li>
-          <a onClick={ this.setActiveSong.bind(this) } className={ classList } href='#'>
+
+          <a onClick={ this.setActiveSong.bind(this, playLink) } className={ classList } href='#'>
             <img className="c-song__album-image" src={ albumImg } alt={ albumName }/>
-            { this.renderStatusIcon() }
+            {/* { this.renderStatusIcon() } */}
             <div className="c-song__info">
               <h3 className="c-song__name">{ songName }</h3>
               <h5 className="c-song__artist">{ artistName }</h5>
               <h6 className="c-song__album">{ albumName }</h6>
             </div>
           </a>
-        </li>
       );
     }
   }
@@ -68,6 +65,7 @@ export default class Song extends React.Component {
   }
 
   setActiveSong(playLink) {
+    window.open(playLink);
     this.props.setActiveSong(this.props.songNum);
   }
 }

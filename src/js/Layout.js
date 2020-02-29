@@ -46,12 +46,13 @@ export default class Layout extends React.Component {
     return (
       <section className="c-playlist">
         <div className="c-playlist__wrapper">
-          <header className="c-playlist__header">
-            <h1>Yousic</h1>
-          </header>
           <div className="c-playlist__content">
-            <div className="c-playlist__img-wrapper" style={{'backgroundImage' : `url(${playListImg})`}}>
-              <h1>{name}</h1>
+            <div className="c-playlist__info">
+              <img className="c-playlist__img" src={playListImg} />
+              <h1 className="c-playlist__info-headline">{name}</h1>
+              <p className="c-playlist__info-description">
+                That was Wintermute, manipulating the lock the way it had manipulated the drone micro and the amplified breathing of the spherical chamber.
+              </p>
             </div>
             <Songlist currentPlaylist={ this.state.currentPlaylist } />
           </div>

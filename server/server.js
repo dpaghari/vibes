@@ -55,12 +55,10 @@ app.get('/api/get_user', function(req, res) {
 // Authentication or registration
 app.post('/', upload.array(), function(req, res, next) {
   let userInfo = req.body;
-  console.log(userInfo);
 
   if(userInfo.action === "login") {
     var response;
     ApiManager.authUser(userInfo, function(data) {
-      console.log(data);
       if(data === false) {
         appState = Object.assign({}, initialState, {error: "Username or password is incorrect"});
         response = {
