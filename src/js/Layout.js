@@ -24,7 +24,7 @@ export default class Layout extends React.Component {
     if(accessToken) {
       this.state.spotify = new SpotifyWebApi();
       this.state.spotify.setAccessToken(accessToken);
-      this.state.spotify.getUserPlaylists('dpaghari')
+      this.state.spotify.getUserPlaylists('udbg4z88s6m3m2inrc64hs2ap')
       .then(function(data) {
         this.state.userPlaylists = data.items;
         this.loadPlaylist(this.state.userPlaylists[0].id);
@@ -56,6 +56,7 @@ export default class Layout extends React.Component {
             </div>
             <Songlist currentPlaylist={ this.state.currentPlaylist } />
           </div>
+          <h3 className="c-playlist__subheadline">Past Mixtapes</h3>
           <PlaylistDrawer currentPlaylist={ this.state.currentPlaylist }
                           userPlaylists={ this.state.userPlaylists }
                           switchPlaylists={ this.switchPlaylists.bind(this) }

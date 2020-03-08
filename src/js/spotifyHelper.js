@@ -6,7 +6,7 @@ module.exports = {
 };
 function login(callback) {
 
-  var CLIENT_ID = '0696905272324e6c9cff8bc6aaa8864e';
+  var CLIENT_ID = '6767f7e0676644ecaa31f3d8584df961';
   var REDIRECT_URI = 'http://localhost:3000';
   // var REDIRECT_URI = 'http://vibes.danielpagharion.com';
   function getLoginURL(scopes) {

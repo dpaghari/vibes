@@ -48,6 +48,12 @@
     margin: 0 auto;
     text-align: center;
     margin-top: 12px; }
+  .c-playlist__info-headline {
+    font-weight: 600; }
+  .c-playlist__subheadline {
+    font-weight: 600;
+    font-size: 2rem;
+    margin-left: 24px; }
   .c-playlist__img {
     width: 100%;
     max-width: 324px;
@@ -56,7 +62,7 @@
     margin: auto;
     width: 70%;
     overflow-y: auto;
-    max-height: 75vh; }
+    max-height: 90vh; }
   .c-playlist__img-wrapper h1 {
     color: white;
     font-family: 'Graduate', sans-serif;
@@ -91,7 +97,8 @@
 
 .c-playlist__drawer-entry {
   margin: 24px;
-  transition: all 0.2s ease-in-out; }
+  transition: all 0.2s ease-in-out;
+  cursor: pointer; }
   .c-playlist__drawer-entry:hover {
     transform: scale(1.1);
     box-shadow: 0px 6px 24px #d9d9d9; }
