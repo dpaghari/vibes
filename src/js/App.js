@@ -9,10 +9,15 @@ export default class App extends React.Component {
     super();
     this.state = {};
   }
+  
 
   render() {
+    const headline = "moodiboi";
     return (
       <div className="site-wrapper">
+        <nav className="c-nav">
+          <h1 className="c-nav__headline">{headline}</h1>
+        </nav>
         <Layout songs={this.state.songs}/>
       </div>
     );

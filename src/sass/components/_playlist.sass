@@ -5,8 +5,6 @@
   margin: 0 auto
   align-items: center
   color: $charcoal
-
-
   &__wrapper
     width: 100%
     display: flex
@@ -15,13 +13,17 @@
     display: flex
     width: 100%
     transition: 0.4s width ease-in
-    height: 100vh
     padding: 0 48px
+    margin: 48px auto
   &__info
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
+    border: 0.5px solid $shadowGray
+    box-shadow: 1px 1px 4px $shadowGray
+    padding: 12px 36px
+    border-top: 12px solid $yellow
   &__info-description
     width: 100%
     max-width: 360px
@@ -33,18 +35,16 @@
   &__subheadline
     font-weight: 600
     font-size: 2rem
-    margin-left: 24px
+    margin: 24px
 
   &__img
     width: 100%
-    max-width: 324px
+    max-width: 640px
     margin: 0 auto 48px
 
   &__songlist
     margin: auto
-    width: 70%
     overflow-y: auto
-    max-height: 90vh
 
   &__img-wrapper h1
     color: white

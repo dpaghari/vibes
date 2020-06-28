@@ -15,6 +15,13 @@
 
 .site-wrapper
   height: 100vh
-  // max-width: 1260px
   margin: 0 auto
   font-family: $font-stack
+
+.container
+  @media screen and (min-width: $largeDesktop)
+    max-width: 1440px
+  @media screen and (min-width: $desktop) and (max-width: $largeDesktop - 1)
+    max-width: 1248px
+  @media screen and (min-width: $tablet) and (max-width: $desktop - 1)
+    max-width: 1024px

@@ -35,13 +35,17 @@
     display: flex;
     width: 100%;
     transition: 0.4s width ease-in;
-    height: 100vh;
-    padding: 0 48px; }
+    padding: 0 48px;
+    margin: 48px auto; }
   .c-playlist__info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; }
+    align-items: center;
+    border: 0.5px solid #f1f1f1;
+    box-shadow: 1px 1px 4px #f1f1f1;
+    padding: 12px 36px;
+    border-top: 12px solid #F6E27F; }
   .c-playlist__info-description {
     width: 100%;
     max-width: 360px;
@@ -53,16 +57,14 @@
   .c-playlist__subheadline {
     font-weight: 600;
     font-size: 2rem;
-    margin-left: 24px; }
+    margin: 24px; }
   .c-playlist__img {
     width: 100%;
-    max-width: 324px;
+    max-width: 640px;
     margin: 0 auto 48px; }
   .c-playlist__songlist {
     margin: auto;
-    width: 70%;
-    overflow-y: auto;
-    max-height: 90vh; }
+    overflow-y: auto; }
   .c-playlist__img-wrapper h1 {
     color: white;
     font-family: 'Graduate', sans-serif;
@@ -87,7 +89,7 @@
   background: white;
   position: relative;
   left: 0;
-  border-right: 1px solid #eee; }
+  margin-top: 12px; }
   .c-playlist__drawer button {
     width: 36px;
     height: 36px;
@@ -155,6 +157,12 @@
     font-size: 12px;
     margin: 0 60px; }
 
+.c-nav {
+  padding: 12px;
+  background: #4a4a4a; }
+  .c-nav__headline {
+    color: white; }
+
 * {
   padding: 0;
   margin: 0;
@@ -167,3 +175,15 @@
   height: 100vh;
   margin: 0 auto;
   font-family: "Source Sans Pro", sans-serif; }
+
+@media screen and (min-width: 1240px) {
+  .container {
+    max-width: 1440px; } }
+
+@media screen and (min-width: 992px) and (max-width: 1239px) {
+  .container {
+    max-width: 1248px; } }
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .container {
+    max-width: 1024px; } }

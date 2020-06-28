@@ -15,7 +15,8 @@ export default class Layout extends React.Component {
       access_token: '',
       userPlaylists: [],
       currentPlaylist: {},
-      currentPlaylistIdx: 0
+      currentPlaylistIdx: 0,
+      isSwitching: false,
     };
   }
 
@@ -44,9 +45,9 @@ export default class Layout extends React.Component {
     let spotifyAlbumImg = images && images[0] ? images[0].url : "";
     let playListImg = spotifyAlbumImg;
     return (
-      <section className="c-playlist">
+      <section className="c-playlist container">
         <div className="c-playlist__wrapper">
-          <div className="c-playlist__content">
+          <div className="c-playlist__content container">
             <div className="c-playlist__info">
               <img className="c-playlist__img" src={playListImg} />
               <h1 className="c-playlist__info-headline">{name}</h1>
@@ -54,7 +55,8 @@ export default class Layout extends React.Component {
                 That was Wintermute, manipulating the lock the way it had manipulated the drone micro and the amplified breathing of the spherical chamber.
               </p>
             </div>
-            <Songlist currentPlaylist={ this.state.currentPlaylist } />
+            
+            <Songlist isSwitching={this.state.isSwitching} currentPlaylist={ this.state.currentPlaylist } />
           </div>
           <h3 className="c-playlist__subheadline">Past Mixtapes</h3>
           <PlaylistDrawer currentPlaylist={ this.state.currentPlaylist }
@@ -74,6 +76,7 @@ export default class Layout extends React.Component {
     this.state.spotify.getPlaylist('dpaghari', playListId)
     .then(function(data) {
     this.setState({
+      isSwitching: true,
       currentPlaylist: data,
       currentPlaylistIdx: idx
     });

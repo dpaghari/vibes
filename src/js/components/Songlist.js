@@ -1,19 +1,42 @@
+import { Transition } from 'react-transition-group';
 import React from 'react';
 import Song from './Song';
+
+
+const defaultStyles= {
+  transition: `opacity 300ms ease-in-out`,
+  opacity: 0,
+};
+
+const transitionStyles = {
+  entering: { opacity: 1 },
+  entered:  { opacity: 1 },
+  exiting:  { opacity: 0 },
+  exited:  { opacity: 0 },
+};
+
 
 export default class Songlist extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeSong: null
+      activeSong: null,
+      isSwitching: props.isSwitching || false,
     };
   }
 
   render() {
     return (
-      <ul className="c-playlist__songlist">
-        { this.renderSongs() }
-      </ul>
+      <Transition in={this.state.isSwitching} timeout={1000}>
+          {state => (
+             <ul styles={{
+              ...defaultStyles,
+              ...transitionStyles[state]
+            }} className="c-playlist__songlist">
+             { this.renderSongs() }
+           </ul>
+          )}
+        </Transition>
     );
   }
 
