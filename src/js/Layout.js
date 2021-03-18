@@ -51,9 +51,9 @@ export default class Layout extends React.Component {
             <div className="c-playlist__info">
               <img className="c-playlist__img" src={playListImg} />
               <h1 className="c-playlist__info-headline">{name}</h1>
-              <p className="c-playlist__info-description">
+              {/* <p className="c-playlist__info-description">
                 That was Wintermute, manipulating the lock the way it had manipulated the drone micro and the amplified breathing of the spherical chamber.
-              </p>
+              </p> */}
             </div>
             
             <Songlist isSwitching={this.state.isSwitching} currentPlaylist={ this.state.currentPlaylist } />

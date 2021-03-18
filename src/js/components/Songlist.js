@@ -29,10 +29,7 @@ export default class Songlist extends React.Component {
     return (
       <Transition in={this.state.isSwitching} timeout={1000}>
           {state => (
-             <ul styles={{
-              ...defaultStyles,
-              ...transitionStyles[state]
-            }} className="c-playlist__songlist">
+             <ul className="c-playlist__songlist">
              { this.renderSongs() }
            </ul>
           )}
